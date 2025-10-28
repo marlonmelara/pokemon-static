@@ -1,0 +1,12 @@
+---
+import type { GetStaticPaths } from "astro";
+import MainLayout from "../../layouts/MainLayout.astro";
+
+export const getStaticPaths = (() => {
+  return [];
+}) satisfies GetStaticPaths;
+---
+
+<MainLayout title="Cualquier Pokémon">
+  <h2>Hola Pokémon</h2>
+</MainLayout>
