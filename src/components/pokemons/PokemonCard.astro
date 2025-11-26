@@ -1,4 +1,6 @@
 ---
+import Name from '../../pages/pokemons/[name].astro';
+
 interface Props {
   url: string;
   name: string;
@@ -12,6 +14,7 @@ const imageSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprit
 // console.log(`Generando URL para ${name}: ${imageSrc}`);
 ---
 
+<!-- href={`/pokemons/${id}`} -->
 <a
   href={`/pokemons/${name}`}
   class:list={[

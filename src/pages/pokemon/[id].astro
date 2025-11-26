@@ -5,28 +5,31 @@ import MainLayout from '@layouts/MainLayout.astro';
 import PokemonCard from '@components/pokemons/PokemonCard.astro';
 
 export const getStaticPaths = (async () => {
-  // 1. Hacemos la petición (asíncrona)
+  // 1. Hacemos la petición a la PokéAPI
   const resp = await fetch('https://pokeapi.co/api/v2/pokemon/?limit=151');
   const { results } = (await resp.json()) as PokemonListResponse;
 
-  // 2. Mapeamos los resultados del fetch
-  // Por cada pokemon en 'results', creamos un objeto para la página
-  return results.map(({ name, url }) => ({
-    params: { name: name },
-    props: { name: name, url: url },
-  }));
+  // 2. Mapeamos los resultados para generar las rutas
+  return results.map(({ name, url }) => {
+    // Al usar llaves {}, podemos ejecutar lógica antes de retornar
+    const id = url.split('/').at(-2);
+
+    return {
+      params: { id: id },
+      props: { name: name, url: url },
+    };
+  });
 }) satisfies GetStaticPaths;
 
-const { name } = Astro.params;
-const { url } = Astro.props;
-const id = url.split('/').at(-2);
-console.log(id);
+// Acceso a los datos en el componente
+const { id } = Astro.params;
+const { name, url } = Astro.props;
 const audioSrc = `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${id}.ogg`;
 ---
 
 <MainLayout title="Cualquier Pokémon">
   <section class="mt-10 mx-10 flex flex-col justify-center item-center">
-    <div class="">
+    <div>
       <a href="/">Regresar</a>
       <h1 class="text-5xl capitalize">{name}</h1>
     </div>
