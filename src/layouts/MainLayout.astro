@@ -9,7 +9,7 @@ import { siteInfo } from 'src/consts/site-info';
 
 // Puedes recibir props, como el título
 interface Props {
-  title: string;
+  title?: string;
   image?: string;
   description?: string;
 }
@@ -31,9 +31,9 @@ const {
     <meta name="description" content={description} />
     <meta name="author" content={'Marlon Melara'} />
     <!-- OG Meta tags -->
-    <meta property="og:title" content="{title}" />
-    <meta property="og:description" content="{description}" />
-    <meta property="og:image" content="{image}" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
     <!-- Required -->
     <title>{title}</title>
     <ClientRouter />
