@@ -13,10 +13,16 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.1.15",
     "astro": "^5.14.8",
+    "astro-icon": "^1.1.5",
     "tailwindcss": "^4.1.15"
   },
   "devDependencies": {
     "prettier": "^3.6.2",
     "prettier-plugin-astro": "^0.14.1"
+  },
+  "overrides": {
+    "astro-icon": {
+      "@iconify/tools": "^4.0.0"
+    }
   }
 }
